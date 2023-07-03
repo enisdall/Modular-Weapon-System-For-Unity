@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class WeaponProjectileController : MonoBehaviour
 {
-    public enum AttackType { Raycast, Projectile }
+    public enum AttackType { Raycast, Projectile, Laser }
     public AttackType attackType;
 
     public Transform barrelTransform;
@@ -22,6 +22,10 @@ public class WeaponProjectileController : MonoBehaviour
             case AttackType.Projectile:
                 ProjectileAttack();
                 break;
+
+            case AttackType.Laser:
+                LaserAttack();
+                break;
         }
     }
 
@@ -37,5 +41,10 @@ public class WeaponProjectileController : MonoBehaviour
         go.transform.forward = projectile.transform.forward;
 
         go.GetComponent<Rigidbody>().AddForce(barrelTransform.forward * 800);
+    }
+
+    void LaserAttack() 
+    {
+
     }
 }

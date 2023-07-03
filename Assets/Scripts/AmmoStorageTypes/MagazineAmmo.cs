@@ -54,7 +54,6 @@ class MagazineAmmo : IAmmoStorageType
     public void ReloadProcess()
     {
         reloadOperation();
-        _weaponAmmoController.FinishReloadProcess();
     }
 
     void SwitchMagazine()

@@ -251,11 +251,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 659155bf4439b424ab7a03c6045a7cf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoStorageType: 2
+  ammoStorageType: 3
   reloadDuration: 5
   isReloading: 0
   totalPrimitiveAmmoCount: 20
-  interruptableReload: 0
+  interruptableReload: 1
   weaponRoundCapacity: 8
   currentRoundCountInWeapon: 0
   totalRoundCount: 50

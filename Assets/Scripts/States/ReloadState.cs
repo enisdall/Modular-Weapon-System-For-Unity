@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class ReloadState : StateBase<WeaponStateController>
 {
+
+    private float _reloadTime;
+    public bool isReloadingProcessCompleted;
+
     public ReloadState(WeaponStateController controller) : base(controller) 
     {
     
@@ -11,13 +15,21 @@ public class ReloadState : StateBase<WeaponStateController>
 
     public override void OnStateEnter()
     {
-        Debug.Log("Reload State Enter");
+        _reloadTime = 1.0f;
     }
 
     public override void OnStateExit()
     {
         Debug.Log("Reload State Exit");
-        
+     
+        if (isReloadingProcessCompleted)
+        {
+            controller._ammoController.FinishReloadProcess();
+        }
+        else 
+        {
+        // Cancel Reload
+        }    
     }
 
     public override void OnStateFixedUpdate()
@@ -32,6 +44,14 @@ public class ReloadState : StateBase<WeaponStateController>
 
     public override void OnStateUpdate()
     {
-        
+        if (_reloadTime > 0.0f)
+        {
+            _reloadTime -= Time.deltaTime;
+        }
+        else 
+        {
+            isReloadingProcessCompleted = true;
+            controller.ChangeState(typeof(IdleState));
+        }
     }
 }

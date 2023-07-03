@@ -34,7 +34,7 @@ class RoundAmmo : IAmmoStorageType
 
         if (_ammoController.currentRoundCountInWeapon < _ammoController.weaponRoundCapacity && _ammoController.isReloading)
         {
-            _ammoController.StartCoroutine(_ammoController.ReloadingTimer(_eachRoundLoadTime));
+            _ammoController.StartReloading(_eachRoundLoadTime);
         }
         else
         {

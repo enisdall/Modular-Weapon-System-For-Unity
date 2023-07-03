@@ -13,9 +13,9 @@ public class WeaponStateController : MonoBehaviour
     
     [SerializeField] private string _currentStateName;
  
-    [SerializeField] private WeaponAmmoController _ammoController;
-    [SerializeField] private WeaponTriggerController _triggerController;
-    [SerializeField] private WeaponProjectileController _attackController;
+    public WeaponAmmoController _ammoController;
+    public WeaponTriggerController _triggerController;
+    public WeaponProjectileController _attackController;
 
     public Action OnShootPerformed;
     public Action OnBulletLoaded;

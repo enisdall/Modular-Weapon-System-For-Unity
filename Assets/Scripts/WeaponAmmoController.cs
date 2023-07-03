@@ -18,6 +18,8 @@ public class WeaponAmmoController : MonoBehaviour
 
     public Action OnReloadingStarted;
     public Action OnReloadingFinished;
+
+    public float finalDuration;
     
     public enum AmmoStorageType { Infinity, Primitive, Round, Magazine }
     public AmmoStorageType ammoStorageType;
@@ -82,26 +84,20 @@ public class WeaponAmmoController : MonoBehaviour
 
     public void StartReloading(float duration)
     {
+        finalDuration = duration;
         weaponMainController.ChangeState(typeof(ReloadState));
         OnReloadingStarted?.Invoke();
         isReloading = true;
-        StartCoroutine(ReloadingTimer(duration));
-    }
-
-    public IEnumerator ReloadingTimer(float duration) 
-    {       
-        yield return new WaitForSeconds(duration);
-        ReloadProcess();
+        
     }
 
     public void ReloadProcess() => currentAmmoStorageType.ReloadProcess();
 
     public void FinishReloadProcess()
-    {
-        weaponMainController.ChangeState(typeof(IdleState));
-        isReloading = false;
-        StopCoroutine("ReloadingTimer");  
+    {   
+        isReloading = false;      
         OnReloadingFinished?.Invoke();
+        ReloadProcess();
     }
 
     public bool CheckIfHasAmmo() 
